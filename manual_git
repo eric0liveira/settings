@@ -1,0 +1,330 @@
+- Organização do Git
+
+Working Directory
+//git add
+Staging Area 	// Index
+//git commit
+Git Directory 	// Head
+
+- Configuracao do Ambiente
+q										// Termina o END
+
+git config --global user.name "Eric de Oliveira Rodrigues"
+git config --global user.email eric.erikito@gmail.com
+
+- Configurar Repositorio Local
+
+Arquivo .gitignore							// Ignora arquivos dentro do projeto - uma informacao por linha
+
+git init 									// cria novo repositorio
+git status									// informa o status atual do repositorio
+git add . (nome.extensao / .extensao)		// acompanha as alteracoes feitas nos arquivos do diretorio (envia para Staging Area - Index)
+git commit -m "mensagem" 					// arquivo enviado para o Git Directory - Head (-m "mensagem": adiciona mensagem ao commit)
+git commit -a -m "mensagem"					// (git add . ) + (git commit -m "mensagem")
+git diff									// consultar as alteracoes de um arquivo comparando - working directory
+git diff --staged							// consultar as alteracoes de um arquivo comparando - na staging area
+git log										// mostra um log de todos os commit
+git log -p 									// mostra um log de todos os commit - mostra o diff no commit
+git log -p -2								// mostra um log de todos os commit - mostra o diff no commit - mostra os dois ultimos commit
+gitk										// interface grafica do historico do commit
+git log --pretty=oneline					// mostra o hash de commit
+git commit --amend -m "mensagem (edicao)"	// Altera/acrescenta os dados do ultimo commit/atual
+git reset HEAD arquivo.extensao				// retirar arquivo da staging area
+git checkout -- arquivo.extensao			// para descartar mudancas no seu diretorio de trabalho
+git rm arquivo.extensao													// remover arquivos deletados
+git tag -a v1.0.0 -m "mensagem"											// cria tag para um commit (-a tag anotada)
+git tag -a v0.0 9eae081641d40bb32adec7b6529db2713d9a1a48 -m "mensagem"	// cria tag para um commit qualquer - ENTER copia - Crtl + Insert cola
+git show v1.0															// mostra detalhes da tag
+git checkout v1.0														// pega uma versao do commit
+git tag -d v1.0 							// remover uma tag
+git branch nomebrach						// cria um branch de teste ou outro
+git checkout nomebranch						// muda para o branch informado
+git checkout -b nomebranch					// cria um branch de teste ou outro + muda para o branch informado
+git merge nomebranch						// faz uma mesclagem do branch nomebranch com o branch atual
+git branch -d nomebranch						// deleta um branch
+git init --bare									// cria novo repositorio no servidor
+git clone file:////nomedoservidor nomeprojeto	// clona o repositorio/projeto do servidor na maquina local
+git remote 										// nome do servidor remoto
+git remote -v									// nome do servidor remoto
+git push origin master 							// envia o projeto pra o servidor origin do branch master
+git pull origin master							// traz o projeto do servidor origin para o branch master
+git fetch origin brachoutro						// traz o projeto do servidor origin para o brachoutro
+
+## Redmine ##
+
+cd /srv/repos
+mkdir <newrepo>
+cd <newrepo>
+git init
+git config --bool core.bare true
+touch /srv/repos/<newrepo>/.git/git-daemon-export-ok		//A presença desse arquivo diz ao Git que ele pode servir esse projeto sem autenticação
+ln -s /srv/repos/<newrepo>/.git /var/cache/<newrepo>.git
+
+git clone ssh://root@10.106.1.109/srv/repos/git/public/helloworld.git
+git clone git://172.16.0.203/git
+
+git init --bare --shared
+
+
+##001##
+git init --bare --shared
+// ln -s /srv/repos/<newrepo>/.git /var/cache/<newrepo>.git
+git clone desenvolvimento@172.16.0.203:/srv/repos/git/desenvolvimento/gitSite
+
+
+##Using the Official Dropbox Command Line Interface (CLI)##
+mkdir -p ~/bin
+wget -O ~/bin/dropbox.py "https://www.dropbox.com/download?dl=packages/dropbox.py"
+chmod +x ~/bin/dropbox.py
+~/bin/dropbox.py help
+~/bin/dropbox.py start
+~/bin/dropbox.py status
+
+git symbolic-ref HEAD refs/heads/nome_branch
+git rm --cached -r .
+
+########################################################################
+Primeira vez
+
+Configurar o nome do usuário (importante!):
+
+$ git config --global user.name "Your Name Comes Here"
+
+$ git config --global user.email you@yourdomain.example.com
+
+Colocar cores:
+
+$ git config --global color.diff auto
+
+$ git config --global color.status auto
+
+$ git config --global color.branch auto
+
+Habilitar git-rerere (opcional):
+
+$ git config --global rerere.enabled 1
+Como baixar um repositório remoto
+
+$ cd ~/wa-git Nota: wa-git pode ser qualquer diretório, onde você colocará seus repositórios git.
+
+Exemplo:
+
+$ git clone ssh://felipe@fml.eti.br/var/git/util
+Como criar um repositório local
+
+$ cd ~/wa-git
+
+$ cd <diretório-do-seu-projeto>
+
+$ git init
+
+$ git add .
+Como adicionar novos arquivos ao controle de versão
+
+$ git add — mas tenha cuidado para não enviar arquivos indesejados*.
+
+$ git add . — adiciona todos os arquivos do diretório atual para baixo recursivamente.
+
+* Os arquivos indesejados no controle de versões são arquivos que são gerados durante a compilação, e.g.: executáveis gerados, bibliotecas geradas, cópia automática de arquivos etc. Geralmente esses arquivos se modificam a cada compilação e não é interessante manter um controle de versões sobre um documento assim. Esses arquivos devem ser incluídos no ignore list logo após a primeira compilação do projeto. Qualquer biblioteca externa deve ser incluída no Git, mas evite enviar arquivos binários muito grandes (> 10 MB) ao repositório de código. Prefira, ao invés disso, criar um repositório separado relacionado ao projeto principal para esses tipos de arquivos. Exemplo de um arquivo .gitignore:
+# Temporarios:
+Backup_of_*.cdr
+nbproject/private/
+*.bak
+*~ diff.txt
+# Gerados durante a compilacao:
+deploy/
+*.pyc
+doc/
+api/
+# Gerados durante a execucao:
+config.xml
+# Copiados do etc que devem ser ignoradas na raiz e no deploy:
+pics/
+db/
+file.bat
+# Arquivos que NAO devem ser ignorados:
+!etc/deploy/
+!etc/deploy/pics/
+!etc/deploy/file.bat
+!etc/deploy/db/
+
+Como receber alterações
+
+$ git pull — avançado: use --rebase para evitar mergesdesnecessários
+Para receber alterações em um branch específico
+
+$ git checkout $ git pull origin
+Como enviar alterações
+
+$ git commit -a— a opção “-a” faz um commit local de todos os arquivos modificados. E uma destas opções:
+
+    $ git push — envia alterações do branch local para o remoto equivalente (e.g. master -> orign/master).
+    $ git push --all — envia alterações de todos os branchs.
+    $ git push origin <source-branch> — envia alterações de um branch local para outro remoto
+
+Trabalhando com branchs e tags
+Para criar tag
+
+$ git tag -a <tag-name>
+
+$ git push --tags
+Para criar branch
+
+Para criar um branch e já dar checkout para ele:
+
+$ git checkout -b <nome-novo-branch>
+
+ou
+
+$ git branch <nome-novo-branch> (porém ele não dá checkout para o novo branch) e para enviar ao servidor:
+
+$ git push -u origin <nome-novo-branch> — para enviar apenas um branch
+
+ou
+
+$ git push --all — envia todos os branchs locais para o repositório de origem
+Para listar branchs
+
+$ git branch (lista somente os locais)
+
+$ git branch -a (lista todos)
+
+$ git branch -r (lista somente os remotos)
+Para alternar para um branch, tag ou versão
+
+$ git checkout [-f] <branch, tag ou versão> — a opção -f faz com que arquivos modificados localmente sejam perdidos.
+Para remover um branch
+
+$ git branch -d <nome do branch>
+Para remover um branch remoto
+
+$ git branch -d -r origin/<name-of-branch>
+
+$ git push origin :<name-of-branch> (obs.: sem o origin)
+Para mesclar (merge)
+
+$ git checkout <nome do branch destino> (você deve “estar” no branch de destino)
+
+$ git merge <nome do branch origem> [--no-ff] (a opção –no-ff serve para não permitir o fast foward)
+Desfazendo
+Desfazendo um commit específico e manter o histórico
+
+$ git revert <versao>
+
+    <versao> pode ser um intervalo como por exemplo: 0b7cd284..642e314
+    <versao> também pode ser HEAD para desfazer o último commit
+    não use este comando quando houver alterações locais!
+
+Reverter apenas alguns arquivos ou path
+
+$ git checkout <versao> -- <path>
+Desfazendo arquivo adicionado no git por engano
+
+$ git rm --cached <file> (funciona antes e depois do commit, recomendado!) ou $ git reset HEAD <file> (apenas antes do commit)
+Desfazendo alterações locais
+Para todos os arquivos
+
+$ git reset --hard HEAD
+Apenas para alguns arquivos
+
+$ git checkout -- <path>
+Outros comandos úteis
+Adicionar arquivos ao ”ignore list”
+
+$ echo "padrao*" >> .gitignore
+Para verificar se todos os arquivos indesejados já estão no ”ignore list” use o comando:
+
+$ git status até que a mensagem “”nothing to commit (working directory clean)”” apareça. Depois de fazer isso, você pode enviar o próprio arquivo .gitignore ao repositório:
+
+$ git add .gitignore
+$ git commit
+Verificar quantas versões desde o início (versão estilo SVN)
+
+O seguinte comando conta quantos commits foram dados desde a primeira versão:
+
+$ git log --pretty=oneline --all | wc -l
+Mostrar histórico com o nome dos arquivos modificados
+
+$ git log --stat
+Como dar pull ou push sem o SSH pedir a senha toda vez
+
+$ ssh-keygen -t rsa
+
+Tente este comando:
+
+$ ssh-copy-id <user>@<ip>
+
+Se o comando acima não funcionar:
+
+$ scp <your public key has been saved in ... path> <user>@<ip>:
+
+$ ssh <user>@<ip>
+
+$ mkdir .ssh (ignore possíveis erros)
+
+$ touch .ssh/authorized_keys
+
+$ cat id_rsa.pub >> .ssh/authorized_keys
+
+$ chmod 700 .ssh/
+
+$ chmod 600 .ssh/authorized_keys
+
+$ chmod 700 .
+
+$ exit
+
+$ ssh <user>@<ip> (teste: se não pedir senha, funcionou)
+Verificando a diferença entre a versão atual e o último commit de um determinado arquivo
+
+$ git diff
+Use diff --color-words para destacar as palavras modificadas
+Verificando as modificações locais
+
+$ git diff -b (a opção -b ignora os espaços em brancos)
+Verificar diferença entre dois branchs
+
+$ git diff .. --stat
+O mesmo que git diff HEAD^..HEAD
+
+$ git show
+Como reduzir o uso de espaço em disco
+
+Tente apenas:
+$ git gc --aggressive
+
+Avançado:
+$ git repack -a -d --window=50 --depth=50 --window-memory=1024m
+Mostrar estatísticas básicas sobre alterações
+
+Tente aplicar o parâmetro --stat em diversos comandos, como o git log e git diff por exemplo.
+Mostrar informações sobre o repositório remoto
+
+É útil porque ele exibe a URL do repositório caso você tenha esquecido. $ git remote show origin
+Opção para ignorar espaços em branco e quebras de linha
+
+Use -w junto com comandos de diff ou quando usar --stat para que o diff ignore todos os espaços em brancos.
+Git avançado
+Fazer um commit “rapidinho” no meio de uma alteração
+
+Quando você está no meio de alguma coisa, seu chefe chega e pede para fazer uma correção rapidinha, na hora você se diverte!
+
+# ... cava cava cava ...
+$ git stash
+$ (faz a correção de emergência)
+$ git commit -a -m "Commit rapidinho e apressado"
+$ git stash pop
+# ... volta a cavar ...
+Criando atalhos para os comandos
+
+Com exemplo é mais fácil:
+
+$ git config --global alias.xoxo "log --stat"
+
+Agora se você digitar “git xoxo” ele vai executar “git log –stat”.
+Mudando propriedades do último commit
+
+$ git commit --amend --author='Your Name <you@example.com>'
+Mostrar diff pelas palavras
+
+$ git diff HEAD^..HEAD --color-words
