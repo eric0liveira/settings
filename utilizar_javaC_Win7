@@ -1,0 +1,11 @@
+- Instale o JDK
+- Clique com o botão direito em Computador > Propriedades > Configurações avançadas do sistema > Variáveis de Ambiente
+- Nova Variável de Sistema
+	- JAVA_HOME
+	- C:\Program Files\Java\jdk1.8.0_40
+- Editar Variável de Sistema
+	- Path
+	- C:\Program Files\Java\jdk1.8.0_40\bin
+- Nova Variável de Sistema
+	- CLASSPATH
+	- C:\Program Files\Java\jdk1.8.0_40\lib\tools.jar
