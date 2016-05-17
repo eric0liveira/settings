@@ -328,3 +328,6 @@ $ git commit --amend --author='Your Name <you@example.com>'
 Mostrar diff pelas palavras
 
 $ git diff HEAD^..HEAD --color-words
+
+
+git remote set-url --add --push origin git@git.com
