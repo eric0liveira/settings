@@ -1,7 +1,11 @@
 # Comandos Linux
 
-- Listar espaço em disco
 
 ```sh
-$ df -l
+
+$ df -l			// Listar espaço em disco
+$ ls -al     	// formatted listing with files
+$ mkdir 		// Make directory
+$ pwd			// Print working directory
+
 ```

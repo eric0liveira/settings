@@ -23,3 +23,28 @@
   
 - Android SDK
  - Linux, o pacote nada mais é que um ZIP que você pode descompactar onde quiser, como a home do seu usuário ou
+
+
+# NodeJs
+# Java JDK
+# Android SDK
+# Apache Ant
+
+
+$ javac -version
+$ android
+$ android avd
+$ ant
+
+
+JAVA_HOME
+C:\Program Files\Java\jdk1.7.0_79
+
+Path
+%JAVA_HOME%\bin;%ANT_HOME%\bin;%ANDROID_HOME%\tools;%ANDROID_HOME%\platform-tools
+
+ANT_HOME
+C:\apache-ant-1.9.6
+
+ANDROID_HOME
+C:\Program Files (x86)\Android\android-sdk
