@@ -1,0 +1,5 @@
+
+regtlib msdatsrc.tlb
+
+regsvr32 C:\Windows\SysWOW64\MSCOMCTL.OCX
+scroll mouse VB6MouseWheel.EXE https://support.microsoft.com/pt-br/kb/837910

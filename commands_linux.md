@@ -14,3 +14,5 @@ $ nano /etc/fstab	// editar aquivo para montar particão automaticamente
 UUID=36C8ECCB11EC2D26 /home/eric/files ntfs defaults,user.rw,auto 0 0
 
 ```
+
+$  upower -i /org/freedesktop/UPower/devices/battery_BAT0	//battery
